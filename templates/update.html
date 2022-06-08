@@ -1,0 +1,92 @@
+{% extends "layout.html" %}
+{% block body %}
+<div id="header">
+    <h3>Update</h3>
+</div>
+<div id="main">
+    <div id="main_form">
+        <form action="/employees/update/{{employee.get_id()}}" class="form" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <p>
+                    <label for="firstName">First name: </label>
+                    <input type="text" name="firstName" id="firstName" value="{{employee.get_firstName()}}" required
+                        class="form-control">
+                </p>
+                <p>
+                    <label for="lastName">Last name: </label>
+                    <input type="text" name="lastName" id="lastName" value="{{employee.get_lastName()}}" required
+                        class="form-control">
+                </p>
+                <p>
+                    <label for="order">Order: </label>
+                    <input type="number" name="order" min="1" id="order" value="{{employee.get_order()}}" required
+                        class="form-control">
+                </p>
+                <p>
+                    <label for="linkedIn">LinkedIn: </label>
+                    <input type="text" name="linkedIn" id="linkedIn" value="{{employee.get_linkedIn()}}"
+                        class="form-control">
+                </p>
+                <p>
+                    <label for="xing">Xing: </label>
+                    <input type="text" name="xing" id="xing" value="{{employee.get_xing()}}" class="form-control">
+                </p>
+                <p>
+                    <label for="role">Role: </label>
+                    <input type="text" name="role" id="role" value="{{employee.get_role()}}" class="form-control">
+                </p>
+                <p>
+                    <label for="email">Email: </label>
+                    <input type="email" name="email" id="email" pattern=".+@.+\..+" placeholder="johndoe@example.com" value="{{employee.get_email()}}"
+                        class="form-control" required>
+                    <span>{{email_error}}</span>
+                </p>
+                <p>
+                    <label for="photoUrl">Photo: </label>
+                    <input type="file" accept="image/*" name="photoUrl" id="photoUrl" class="form-control"
+                        value="{{employee.get_pohotUrl()}}" {% if employee.get_pohotUrl() == "" %} class="hide"  {% endif %} >
+
+                    <input type="number"  name="deletePhoto" id="deletePhoto" class="form-control hide"
+                        value="0">
+
+                <div class="photoHolder photoHolder-x">
+                    <span id="file_error">{{file_error}}</span>
+                    <img class="image" id="image" src="{{employee.get_pohotUrl()}}" alt="">
+                </div>
+            
+                </p>
+                <p>
+                    <input type="submit" value="Update" class="btn btn-success form-control">
+                </p>
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+    document.getElementById('photoUrl').onchange = function () {
+        let src = URL.createObjectURL(this.files[0]);
+        document.getElementById('image').src = src;
+        document.querySelector('.photoHolder').classList.add('photo-x');
+        document.querySelector('.image').classList.remove('hide');
+    }
+    
+
+    let img = document.getElementById('image');
+    let src = img.getAttribute('src');
+    
+    if (src) {
+       document.querySelector('.photoHolder-x').classList.add('photo-x');
+    }
+
+
+    document.querySelector('.photoHolder-x').addEventListener('click', function () {
+        
+        document.getElementById('deletePhoto').value = 1;
+        img.classList.add('hide');
+        document.querySelector('.photoHolder-x').classList.remove('photo-x');
+    });
+    
+
+</script>
+
+{% endblock %}

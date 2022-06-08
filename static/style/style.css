@@ -1,0 +1,51 @@
+*{
+    padding: 0%;
+    margin: 0%;
+    box-sizing: border-box;
+}
+img {
+    width: 100%;
+}
+
+.photoHolder {
+    padding: 0.5em !important;
+    width: 20%;
+}
+
+.photoHolder-x {
+    display: inline-block;
+    pointer-events: none;
+}
+
+.photo-x {
+    position: relative;
+}
+
+.photo-x::after {
+    content: 'X';
+    pointer-events: all;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    right: 0;
+    color: aliceblue;
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: rgba(255, 0, 0, 0.603);
+}
+
+.hide{
+    display: none;
+}
+
+@media (max-width: 80rem) {
+    .custom-table {
+        display: inline-block;
+        max-width: 100%;
+        overflow-x: auto;
+    }
+}

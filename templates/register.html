@@ -1,0 +1,78 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<div id="header">
+    <h3>Register</h3>
+</div>
+<div id="main">
+    <div id="main_form">
+        <form action="/employees/register" class="form" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <p>
+                    <label for="firstName">First name:</label>
+                    <input type="text" name="firstName" id="firstName" required class="form-control" value="{{firstName}}">
+                </p>
+                <p>
+                    <label for="lastName">Last name: </label>
+                    <input type="text" name="lastName" id="lastName" required class="form-control" value="{{lastName}}">
+                </p>
+                <p>
+                    <label for="order">Order: </label>
+                    <input type="number" min="1" name="order" id="order" required class="form-control" value="{{order}}">
+                </p>
+                <p>
+                    <label for="linkedIn">LinkedIn: </label>
+                    <input type="text" name="linkedIn" id="linkedIn" class="form-control" value="{{linkedIn}}">
+                </p>
+                <p>
+                    <label for="xing">Xing: </label>
+                    <input type="text" name="xing" id="xing" class="form-control" value="{{xing}}">
+                </p>
+                <p>
+                    <label for="role">Role: </label>
+                    <input type="text" name="role" id="role" class="form-control" value="{{role}}">
+                </p>
+                <p>
+                    <label for="email">Email: </label>
+                    <input type="email" name="email" pattern= ".+@.+\..+" id="email"  placeholder="johndoe@example.com" required class="form-control" value="{{email}}">
+                    <span class="text-danger">{{email_error}}</span>
+                </p>
+                <p>
+                    <label for="photoUrl">Photo: </label>
+                    <input type="file" accept="image/*" name="photoUrl" id="photoUrl" onchange="PreviewImage();" class="form-control">
+                    <div class="photoHolder photoHolder-x">
+                        <span>{{file_error}}</span>
+                        <img id="uploadPreview">
+                    </div>
+                </p>
+                <p>
+                    <input type="submit" value="Register" class="btn btn-success form-control">
+                </p>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<script>
+    function PreviewImage() {
+        var oFReader = new FileReader();
+        oFReader.readAsDataURL(document.getElementById("photoUrl").files[0]);
+
+        oFReader.onload = function (oFREvent) {
+            document.getElementById("uploadPreview").src = oFREvent.target.result;
+            document.querySelector('.photoHolder').classList.add('photo-x')
+            document.querySelector('#uploadPreview').classList.remove('hide');
+        };
+    };
+
+    document.querySelector('.photoHolder-x').addEventListener('click', function () {
+        document.getElementById("photoUrl").value = '';
+        document.querySelector('#uploadPreview').classList.add('hide');
+        document.querySelector('.photoHolder-x').classList.remove('photo-x')
+    });
+    
+
+</script>
+
+{% endblock %}

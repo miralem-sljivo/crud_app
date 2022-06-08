@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% block body %}
+	<div>
+		<form action="{{ url_for('user_services.login') }}" method="post" class="form">
+			<div class="form-group">
+			<p>
+				<label for="username">Username</label>
+				<input type="text" class="form-control" name="username" placeholder="Username" id="username" required>
+			</p>
+			<p>
+				<label for="password">Password</label>
+				<input type="password" class="form-control" name="password" placeholder="Password" id="password" required>
+				<div>{{ msg }}</div>
+			</p>
+			<p class="d-flex justify-content-center">
+				<input type="submit" class="btn btn-primary" value="Login">
+			</p>
+			</div>
+		</form>
+	</div>
+{% endblock %}

@@ -1,0 +1,20 @@
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <ul class="navbar-nav">
+
+      {% if 'username' in session %}
+      <li class="nav-item">
+          <a class="nav-link" href="/employees/">Dashboard</a>
+      </li>
+      <li class="nav-item">
+          <a class="nav-link" href="/employees/register">Register</a>
+      </li>
+      <li class="nav-item">
+          <a class="nav-link" href="/employees/logout">Logout</a>
+      </li>
+      {% else %}
+      <li class="nav-item">
+          <a disabled class="nav-link">Admin panel</a>
+      </li>
+      {% endif %}
+    </ul>
+  </nav>

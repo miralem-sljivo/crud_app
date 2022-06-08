@@ -10,7 +10,7 @@ from util.check_data import check_parameters, default_values, if_exists
 employee_services = Blueprint("employee_services", __name__)
 mydb = DB.connect()
 
-
+#must login to see pages
 def login_required(fnc):
     @wraps(fnc)
     def wrap(*args, **kwargs):

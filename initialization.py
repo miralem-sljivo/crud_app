@@ -21,6 +21,7 @@ def init_db():
                         UNIQUE KEY `username_UNIQUE` (`username`)
                     ) ENGINE=InnoDB""")
 
+    #username and password for login
     username = "admin"
     password = User.hash_password("VkT}9;N3$kdAp]Nc")
 
